@@ -1,11 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>MIL DETALLES | Vasos, Botellas, Accesorios y Cuadros Personalizados</title>
+    <!-- AGREGAMOS META DESCRIPTION -->
+    <meta name="description"
+        content="Mil Detalles: Tienda online de productos personalizados. Encuentra vasos, botellas, accesorios de maquillaje y cuadros ideales para regalos y eventos.">
+    <meta name="keywords"
+        content="vasos personalizados, botellas personalizadas, cuadros personalizados, regalos personalizados, accesorios makeup, vasos para eventos, Mil Detalles">
+    <!-- INCLUYO LOS ARCHIVO CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/estilo.css">
 </head>
+
 <body>
-    
+    <div class="grid-container">
+        <div class="grid-item header">
+            <!-- NAVBAR -->
+            <nav class="navbar navbar-expand-lg shadow-sm">
+                <!-- logo -->
+                <a class="navbar-brand" href="index.html">
+                    <img src="imagenes/logo.svg" alt="logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+                    aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="" href="paginas/productos.html">Productos</a>
+                        </li>
+                        <li class="nav-item"><a class="" href="paginas/como_comprar.html">¿Cómo
+                                comprar?</a>
+                        </li>
+                        <li class="nav-item"><a class="" href="paginas/quienes_somos.html">¿Quiénes
+                                somos?</a></li>
+                        <li class="nav-item"><a class="" href="paginas/clientes.html">Clientes</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- MAIN -->
+        <div class="grid-item main">
+            <div class="container-main">
+                <!-- TITULO -->
+                <div class="title">
+                    <h1>MIL DETALLES</h1>
+                </div>
+                <!-- SECTION PRODUCTOS -->
+                <div class="section">
+                    <section class="container-card">
+                        <article class="container-card-1">
+                            <a class="articulos" href="paginas/productos.html#vasos">
+                                <div class="imagen-tamano"><img src="imagenes/vasos.webp" class=""
+                                        alt="Vasos personalizados para eventos y regalos"></div>
+                                <h2>VASOS</h2>
+                            </a>
+                        </article>
+                        <article class="container-card-2">
+                            <a class="articulos" href="paginas/productos.html#accesorios">
+                                <div class="imagen-tamano"><img src="imagenes/accesorios.webp" class=""
+                                        alt="Accesorios y maquillaje (makeup)"></div>
+                                <h2>ACCESORIOS</h2>
+                            </a>
+                        </article>
+                        <article class="container-card-3">
+                            <a class="articulos" href="paginas/productos.html#botellas">
+                                <div class="imagen-tamano"><img src="imagenes/botellas.webp" class=""
+                                        alt="Botellas personalizadas para gimnasio y uso diario"></div>
+                                <h2>BOTELLAS</h2>
+                            </a>
+                        </article>
+                        <article class="container-card-4">
+                            <a class="articulos" href="paginas/productos.html#cuadros">
+                                <div class="imagen-tamano"><img src="imagenes/cuadros.webp" class=""
+                                        alt="Cuadros y marcos personalizados para decorar"></div>
+                                <h2>CUADROS</h2>
+                            </a>
+                        </article>
+                    </section>
+                </div>
+            </div>
+
+        </div>
+        <div class="grid-item footer">
+            <div class="footer-link">
+                <!-- NUESTRAS REDES SOCIALES -->
+                <a href="https://www.instagram.com/mildetalles.vr/" target="_blank"><img src="imagenes/instagram.png" alt=""></a>
+                <a href="https://www.tiktok.com/@mildetalles.vr?_t=ZM-90pWCCAD5Lg&_r=1" target="_blank"><img src="imagenes/tiktok.png" alt=""></a>
+                <a href="https://web.whatsapp.com/" target="_blank"><img src="imagenes/whatsapp.png" alt=""></a>
+            </div>
+        </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

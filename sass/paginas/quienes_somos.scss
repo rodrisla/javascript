@@ -1,0 +1,109 @@
+@use "../utilidades/variables" as *;
+@use "../utilidades/mixin" as *;
+/* ESTILOS PARA EL HTML QUIENES SOMOS */
+.centrar-card {
+    @include flex;
+    @include centrar;
+
+    .card-fondo-2 {
+        @include grid(repeat(2, 1fr), repeat(3, auto), 0);
+        grid-template-areas: "subtitulo1 subtitulo1"
+            "parrafo1 imagen1"
+            "subtitulo2 subtitulo2";
+        @include card-prederterminada;
+
+        h2 {
+            text-align: center;
+        }
+
+        img {
+            display: block;
+            margin: auto 0;
+            width: auto;
+            max-width: 50%;
+            max-height: 50%;
+            height: auto;
+        }
+
+        .subtituloquienes1 {
+            grid-area: subtitulo1;
+            text-align: center;
+        }
+
+        .parrafoquienes {
+            grid-area: parrafo1;
+            @include flex;
+            @include centrar;
+
+            p {
+                text-align: center;
+                font-size: 1.5em;
+            }
+        }
+
+        .imagenquienes {
+            grid-area: imagen1;
+            align-content: center;
+        }
+
+        .subtituloquienes2 {
+            grid-area: subtitulo2;
+
+            p {
+                text-align: center;
+                font-size: 1.5em;
+            }
+        }
+    }
+}
+/* MEDIA QUERYS PARA TABLETS */
+@media screen and (max-width: 991px) {
+    .centrar-card {
+
+        .card-fondo-2 {
+
+            img {
+                display: block;
+                margin: auto 0;
+                width: auto;
+                max-width: 60%;
+                height: auto;
+            }
+        }
+    }
+}
+/* MEDIA QUERYS PARA CELULAR */
+@media screen and (max-width: 768px) {
+    .centrar-card {
+
+        .card-fondo-2 {
+            @include grid(repeat(1, 1fr), repeat(5, auto), 0);
+            grid-template-areas: "subtitulo1"
+                "imagen1"
+                "parrafo1"
+                "subtitulo2";
+
+            img {
+                display: block;
+                margin: 0 auto;
+                width: auto;
+                max-width: 60%;
+                height: auto;
+            }
+
+            .parrafoquienes {
+                p {
+                    text-align: center;
+                    font-size: 1.3em;
+                }
+            }
+
+            .subtituloquienes2 {
+                p {
+                    text-align: center;
+                    font-size: 1.3em;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,262 @@
+@use "../utilidades/variables" as *;
+@use "../utilidades/mixin" as *;
+/* ESTILOS PARA EL HTML PRODUCTOS */
+.grid-container-productos {
+    @include grid(250px 1fr, auto 1fr auto, 0);
+    grid-template-areas:
+        "header header"
+        "aside main"
+        "footer footer";
+    min-height: 100vh;
+    background-color: $color-secundario;
+
+    .header {
+        background-color: $color-secundario;
+        height: 10vh;
+        grid-area: header;
+        @include flex;
+        position: relative;
+        z-index: 10;
+
+        .navbar {
+            @include flex;
+            padding: 0 20px;
+
+            img {
+                max-height: 9vh;
+                height: auto;
+            }
+
+            ul {
+                @include flex;
+                padding: 0;
+                margin-right: 200px;
+                width: 100%;
+
+                li {
+                    padding: 10px;
+                    margin: 0 15px;
+
+                    a {
+                        @include links;
+                    }
+                }
+            }
+
+            .navbar-nav {
+                @include flex;
+                @include centrar;
+            }
+        }
+    }
+
+    .footer {
+        grid-area: footer;
+        height: auto;
+        max-height: 6vh;
+        background-color: $color-secundario;
+
+        .footer-link {
+            @include flex;
+            @include centrar;
+            gap: 60px;
+            flex-wrap: wrap;
+            height: 100%;
+            a{
+                img{
+                    max-height: 29px;
+                    height: auto;
+                    margin: 0;
+                    padding: 0;
+                }
+            }
+        }
+    }
+
+    .main {
+        grid-area: main;
+        min-height: 83vh;
+        height: auto;
+        background-color: $color-primario;
+
+        .distribucion {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+
+            .grilla {
+                @include grid(auto, auto auto, 0);
+                width: 100%;
+                max-width: 100%;
+                margin-top: 3vh;
+                grid-template-areas: "titulo"
+                    "productos";
+
+                .titulo {
+                    grid-area: titulo;
+                    @include flex;
+                    @include centrar;
+                    max-width: 100%;
+                    width: auto;
+                    height: auto;
+                    max-height: 5vh;
+
+                    h2 {
+                        font-size: 3rem;
+                    }
+                }
+
+                .productos {
+                    grid-area: productos;
+
+                    display: flex;
+                    align-items: center;
+                    flex-wrap: wrap;
+
+                    .card-producto {
+                        background-color: white;
+                        height: 200px;
+                        max-height: 200px;
+                        width: 90%;
+                        max-width: 250px;
+
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        align-items: center;
+                        border: 1px solid #ddd;
+                        border-radius: 10px;
+                        margin: 0.5rem;
+
+                        .imagen-tamanop {
+                            height: auto;
+                            max-height: 85%;
+                            width: 100%;
+                            position: relative;
+                            padding: 0.5rem;
+
+                            img {
+                                width: 100%;
+                                max-width: 300px;
+                                height: auto;
+                                max-height: 100% !important;
+                                border-radius: 10px;
+                            }
+                        }
+
+                        h3 {
+                            font-size: 1rem;
+                            text-align: center;
+                        }
+
+                        &:hover {
+                            background-color: $color-hover;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .aside {
+        grid-area: aside;
+        background-color: $color-secundario;
+        color: black;
+        padding: 20px;
+        position: sticky;
+        top: 0;
+
+        aside {
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        h5 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        a {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: $color-primario;
+            color: black;
+            text-decoration: none;
+            border-radius: 5px;
+
+            &:hover {
+                background-color: $color-hoverlink;
+            }
+        }
+    }
+
+}
+/* MEDIA QUERYS PARA TABLETS */
+@media screen and (max-width: 991px) {
+    .grid-container-productos {
+        @include grid(1fr, auto auto 1fr auto, 0);
+        grid-template-areas:
+            "header"
+            "aside"
+            "main"
+            "footer";
+
+        .aside {
+            grid-area: aside;
+            background-color: $color-secundario;
+            height: auto;
+            padding: 10px;
+            position: static;
+
+            .collapse {
+
+                aside {
+                    background-color: $color-secundario;
+                    position: relative;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    padding: 10px 0;
+                }
+            }
+        }
+    }
+
+}
+/* MEDIA QUERYS PARA CELULAR */
+@media screen and (max-width:768px) {
+    .grid-container-productos {
+        .main {
+            .distribucion {
+                .grilla {
+                    .productos {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+
+                        .card-producto {
+                            width: 90%;
+                            max-width: 350px;
+                            height: 300px;
+                            max-height: 300px;
+
+                            .imagen-tamanop {
+                                max-height: 80%;
+                            }
+
+                            h3 {
+                                font-size: 1rem;
+                                text-align: center;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

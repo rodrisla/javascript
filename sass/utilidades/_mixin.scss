@@ -1,0 +1,75 @@
+@use "_variables.scss" as *;/* INCLUIMOS VARIABLES */
+
+ /* MIXIN PARA GRID */
+@mixin grid($colums, $rows, $gap) {
+    display: grid;
+    grid-template-columns: $colums;
+    grid-template-rows: $rows;
+    gap: $gap;
+}
+/* MIXIN PARA FLEX */
+@mixin flex {
+    display: flex;
+    flex: 1;
+}
+/* MIXIN PARA CENTRAR */
+@mixin centrar {
+    justify-content: center;
+    align-items: center;
+}
+/* MIXIN PARA ESTILAR LOS LINKS */
+@mixin links {
+    color: #000000;
+    text-decoration: none;
+    padding: 15px 20px;
+    list-style: none;
+    &:hover {
+                            background-color: $color-hoverlink;
+                            border-radius: 5px;
+                        }
+}
+/* MIXIN PARA ESTILAR CARD DE ARTICULOS */
+@mixin articulos {
+    background-color: white;
+    height: 30vh;
+    min-height: 30vh;
+    width: 90%;
+    max-width: 500px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin: 0.5rem;
+
+    .imagen-tamano {    
+        height: auto;
+        max-height: 70%;
+        width: 100%;
+        position: relative;
+        img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            max-height: 100% !important;
+            border-radius: 10px;
+        }
+    }
+
+    &:hover {
+        background-color: $color-hover;
+    }
+}
+/* MIXIN PARA CARD DE QUIENES SOMOS Y COMO COMPRAR */
+@mixin card-prederterminada {
+    height: auto;
+    width: auto;
+    max-width: 80%;
+    min-height: 100px;
+    background-color: $color-card;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 3vh;
+}

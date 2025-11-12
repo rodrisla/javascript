@@ -1,0 +1,115 @@
+@use "../utilidades/variables" as *;
+@use "../utilidades/mixin" as *;
+/* ESTILOS PARA EL HTML CLIENTES */
+.centrar-card {
+    @include flex;
+    @include centrar;
+ 
+    .card-fondo-3 {
+        @include grid(1fr, repeat(2, auto), 0);
+        grid-template-areas: "subtitulocliente"
+            "mi-carrusel";
+        @include centrar;
+        @include card-prederterminada;
+        max-height: 100%;
+        height: auto;
+        margin: 5px;
+        .subtitulocliente {
+            grid-area: subtitulocliente;
+            text-align: center;
+        }
+
+        .mi-carrusel {
+            grid-area: mi-carrusel;
+            width: 90%;
+            max-width: 500px;
+            height: auto;
+            max-height: 100%;
+            display: block;
+            margin: 0 auto;
+
+            .carousel-inner {
+                width: 100%;
+                max-height: 100%;
+                height: auto;
+            }
+
+            .carousel-item {
+                width: 100%;
+
+                height: 100%;
+
+                img {
+                    width: 100%;
+                    height: 65vh;
+                }
+            }
+        }
+    }
+}
+/* MEDIA QUERYS PARA TABLET */
+@media screen and (max-width: 991px) {
+    .centrar-card {
+        .card-fondo-3 {
+            
+            max-width: 80%;
+            padding: 20px;
+
+            .mi-carrusel {
+
+                width: 100%;
+                max-width: 600px;
+
+                .carousel-item {
+                    width: 100%;
+
+                    height: 100%;
+
+                    img {
+                        width: 100%;
+                        height: auto;
+                        max-height: 500px;
+                    }
+                }
+            }
+
+            .subtitulocliente {
+                font-size: 1.5rem;
+            }
+        }
+    }
+}
+/* MEDIA QUERYS PARA CELULAR */
+@media screen and (max-width: 768px) {
+    .centrar-card {
+        .card-fondo-3 {
+
+            padding: 0;
+
+            .mi-carrusel {
+
+                width: 100%;
+                max-width: 100%;
+
+                .carousel-item {
+                    width: 100%;
+
+                    height: 100%;
+
+                    img {
+                        width: 100%;
+                        height: auto;
+                        max-height: 80vh;
+                    }
+                }
+            }
+
+            .subtitulocliente {
+                
+                    font-size: 1.5rem;
+                
+            }
+        }
+    }
+
+}

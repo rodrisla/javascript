@@ -1,0 +1,105 @@
+@use "../utilidades/variables" as *;
+@use "../utilidades/mixin" as *;
+/* ESTILOS PARA EL HTML INDEX */
+.container-main {
+    @include grid (1fr, auto 1fr auto, 0);
+    grid-template-areas: "title"
+        "section";
+    align-items: start;
+    min-height: 84vh;
+    height: auto;
+    @include centrar;
+
+    .title {
+        grid-area: title;
+        height: auto;
+        min-height: 10vh;
+        margin-top: 20px;
+
+        h1 {
+            font-size: 4em;
+            text-align: center;
+        }
+    }
+
+    .section {
+        grid-template-areas: section;
+        width: auto;
+        height: auto;
+        min-height: 70vh;
+        display: flex;
+        justify-content: center
+    }
+}
+
+.container-card {
+    @include grid (repeat(2, 1fr), auto 1fr auto, 0);
+    place-items: center;
+    height: 100%;
+    grid-template-areas: "container-card-1 container-card-2"
+        "container-card-3 container-card-4";
+
+    article {
+        text-align: center;
+    }
+
+    .container-card-1 {
+        grid-area: container-card-1;
+
+        .articulos {
+            @include links;
+            @include articulos;
+        }
+    }
+
+    .container-card-2 {
+        grid-area: container-card-2;
+
+        .articulos {
+            @include links;
+            @include articulos;
+        }
+    }
+
+
+    .container-card-3 {
+        grid-area: container-card-3;
+
+        .articulos {
+            @include links;
+            @include articulos;
+        }
+    }
+
+    .container-card-4 {
+        grid-area: container-card-4;
+
+        .articulos {
+            @include links;
+            @include articulos;
+        }
+    }
+}
+/* MEDIA QUERYUS PARA CELULAR ---EN TABLET SE AJUSTA SOLO, NO ES NECESARIO---- */
+@media screen and (max-width:768px) {
+    .container-card {
+        @include grid (1fr, auto 1fr auto, 0);
+        place-items: center;
+        height: 100%;
+        grid-template-areas:
+            "container-card-1"
+            "container-card-2"
+            "container-card-3"
+            "container-card-4";
+    }
+
+    .container-main {
+        .title {
+
+            h1 {
+                font-size: 3em;
+                text-align: center;
+            }
+        }
+    }
+}

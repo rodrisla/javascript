@@ -1,0 +1,236 @@
+
+ 
+/*# sourceMappingURL=style.css.map */
+html body {
+    margin: 0;
+    padding: 0;
+}
+
+.bg-main {
+    background-color: #FFC4D5;
+}
+
+.bg-nav-foo {
+    background-color: #F7C4FF;
+}
+
+.card-img {
+    height: 200px;
+    width: 400px;
+}
+
+a {
+    color: #000000;
+    text-decoration: none;
+}
+
+.card-hover:hover {
+    background-color: #ffe0eb;
+}
+
+.card-hover:active {
+    background-color: #A787B0;
+}
+
+.bg-card-img {
+    background-color: white;
+}
+
+.nav-link:hover {
+    background-color: #C79BD1;
+}
+
+.foo-link:hover {
+    background-color: #C79BD1;
+}
+ 
+aside {
+    top: 0;
+    padding-top: 220px;
+    background-color: #F7C4FF;
+    position: fixed;
+    width: 220px;
+    height: 100vh;
+}
+.content-menu {
+    display: flex;
+    gap: 20px;
+    background-color: #FFC4D5;
+}
+
+main {
+    flex-grow: 1;
+}
+.main-producto{
+    margin-left: 220px;
+}
+
+.card-producto {
+    transition: transform 0.3s ease;
+}
+
+.card-producto:hover {
+    background-color: #ffe0eb;
+    transform: scale(1.2);
+}
+
+@media (max-width: 991px) {
+    aside {
+        position: static;
+        width: 100%;
+        min-height: auto;
+        margin-bottom: 20px;
+    }
+
+    .content-menu {
+        flex-direction: column;
+    }
+
+    .card-producto:hover {
+        background-color: #ffe0eb;
+        transform: scale(1.0);
+    }
+    .main-producto{
+        margin-left: 0;
+    }
+}
+
+.btn-categoria {
+    width: 100%;
+    background-color: #F7C4FF;
+}
+
+.btn-categoria:hover {
+    background-color: #C79BD1;
+}
+.card-img-gatito{
+    height: 200px;
+    width: 300px;
+    padding-left: 50px;
+}
+.bg-card-predeterminada{
+    background-color: #fadbd7;;
+}
+
+/* ANTES DE USAR BOOTSTRAP */
+
+/* .grid-container{
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto 1fr auto  ;
+    grid-template-areas: "header header header"
+                         "main   main   main"
+                         "footer footer footer";
+}
+.grid-item{
+    background-color: #F7C4FF;
+}
+.header{
+    display: flex;
+    grid-area: header;
+    height: 10vh;
+}
+header{ 
+    display: flex;
+    flex: 1;
+}
+
+.navbar{
+    flex: 1;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    padding: 0 20px;
+}
+.navbar ul{
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.navbar li{
+    margin: 0 15px;
+}       
+.navbar a {
+    color: #000000;
+    text-decoration: none;
+    padding: 15px 20px;
+}
+.main{
+    grid-area: main;
+    height: 80vh; */
+/* background-color: #FFC4D5;
+}
+.container-main{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "title"
+                         "section";
+} 
+ .title{
+    grid-area: title; 
+    height: 10vh;
+}
+.titulo{
+    display: flex;
+    flex: 1;
+    font-size: 4em;
+    justify-content:center;
+    font-family: 'Times New Roman', Times, serif;
+}
+.section{
+    grid-template-areas: section;
+    height: 70vh;
+}
+.container-links{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr); 
+    gap: 5px; 
+    place-items: center;
+    height: 100%; 
+    grid-template-areas: "art1 art2"
+                         "art3 art4";
+}
+
+article{
+    text-align: center;
+}
+.art1{
+    grid-area: art1;
+}
+.art2{
+    grid-area: art2;
+}
+.art3{
+    grid-area: art3;
+}
+.art4{
+    grid-area: art4;
+}
+.articulos{
+    background-color: bisque;
+    height: 300px;          
+    width: 450px;
+    display: flex;
+    justify-content: center;  Horizontal 
+    align-items: center;       Vertical
+}
+.footer{
+     display: flex;
+    grid-area: footer;
+    height: 10vh; */
+/*  background-color: #F7C4FF;
+    text-align: center;
+    flex: 1; 
+}
+ footer{
+    flex: 1;
+    display: flex;
+    justify-content:center;
+    align-items: center
+}
+footer a{
+    margin: 10px;
+}  */

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Cómo Comprar en Mil Detalles? | Pedidos, Pagos y Personalización</title>
+    <!-- AGREGAMOS META DESCRIPTION -->
+    <meta name="description"
+        content="Aprende a comprar fácilmente tus productos personalizados en Mil Detalles. Conoce nuestro proceso de pedido por Instagram/WhatsApp, métodos de pago (efectivo, transferencia) y política de seña.">
+    <meta name="keywords"
+        content="como comprar productos personalizados, métodos de pago Mil Detalles, hacer pedido WhatsApp, seña para productos personalizados, comprar vasos Mil Detalles">
+    <!-- INCLUYO LOS ARCHIVO CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/estilo.css">
+</head>
+
+<body>
+    <div class="grid-container">
+        <div class="grid-item header">
+            <!-- NAVBAR -->
+            <nav class="navbar navbar-expand-lg bg-nav-foo shadow-sm">
+                <!-- logo -->
+                <a class="navbar-brand" href="../index.html">
+                    <img src="../imagenes/logo.svg" alt="logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+                    aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="menu">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="" href="productos.html">Productos</a>
+                        </li>
+                        <li class="nav-item"><a class="" href="como_comprar.html">¿Cómo
+                                comprar?</a>
+                        </li>
+                        <li class="nav-item"><a class="" href="quienes_somos.html">¿Quiénes
+                                somos?</a></li>
+                        <li class="nav-item"><a class="" href="clientes.html">Clientes</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </nav>
+        </div>
+        <!-- MAIN -->
+        <div class="grid-item main">
+            <div class="centrar-card">
+                <section class="card-fondo">
+                    <section class="container my-5">
+                        <h2 class="mb-4 text-center">🛒 Simulador de Compras</h2>
+
+                        <div class="card p-4 shadow-sm bg-dark text-light">
+                            <div class="row g-3 align-items-end">
+                                <div class="col-md-5">
+                                    <label for="nombreProducto" class="form-label">Nombre del producto</label>
+                                    <input type="text" id="nombreProducto" class="form-control"
+                                        placeholder="Ej: Vaso personalizado dtf">
+                                </div>
+                                <div class="col-md-5">
+                                    <label for="precioProducto" class="form-label">Precio ($)</label>
+                                    <input type="number" id="precioProducto" class="form-control"
+                                        placeholder="Ej: 14999">
+                                </div>
+                                <div class="col-md-2 text-center">
+                                    <button id="btnAgregar" class="btn btn-primary w-100">Agregar</button>
+                                </div>
+                            </div>
+
+                            <hr class="my-4">
+
+                            <h4>Carrito actual</h4>
+                            <ul id="listaCarrito" class="list-group mb-3"></ul>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <button id="btnCalcular" class="btn btn-success">Calcular Total</button>
+                                <h5 id="resultadoTotal" class="text-end mb-0"></h5>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+            </div>
+        </div>
+        <!-- FOOTER -->
+        <div class="grid-item footer">
+            <div class="footer-link">
+                <!-- NUESTRAS REDES SOCIALES -->
+                <a href="https://www.instagram.com/mildetalles.vr/" target="_blank"><img src="../imagenes/instagram.png"
+                        alt=""></a>
+                <a href="https://www.tiktok.com/@mildetalles.vr?_t=ZM-90pWCCAD5Lg&_r=1" target="_blank"><img
+                        src="../imagenes/tiktok.png" alt=""></a>
+                <a href="https://web.whatsapp.com/" target="_blank"><img src="../imagenes/whatsapp.png" alt=""></a>
+            </div>
+        </div>
+    </div>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/simulador_de_compras.js"></script>
+</body>
+
+</html>
