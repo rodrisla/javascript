@@ -1,69 +1,56 @@
-/* simulador_de_compras.js */
+/* Simulador de compras */
+/* Array para guardar los productos */
 let carrito = [];
 
-const inputNombre = document.getElementById("nombreProducto");
-const inputPrecio = document.getElementById("precioProducto");
-const listaCarrito = document.getElementById("listaCarrito");
-const btnAgregar = document.getElementById("btnAgregar");
-const btnCalcular = document.getElementById("btnCalcular");
-const resultadoTotal = document.getElementById("resultadoTotal");
+/* Función para ingreso de datos */
+function agregar_productos() {
+  const cantidad = parseInt(prompt("¿Cuantos productos vas a comprar?"));
 
-/* Función para agregar productos */
-function agregarProducto() {
-    const nombre = inputNombre.value.trim();
-    const precio = parseFloat(inputPrecio.value);
-
-    if (!nombre || isNaN(precio) || precio <= 0) {
-        alert("Por favor, ingresá un nombre y un precio válido.");
-        return;
-    }
+  for (let i = 0; i < cantidad; i++) {
+    let nombre = prompt(`Ingresa el nombre del producto ${i + 1}:`);
+    let precio = parseFloat(prompt(`Ingresa el precio de ${nombre}:`));
 
     carrito.push({ nombre, precio });
-    mostrarCarrito();
+  }
 
-    inputNombre.value = "";
-    inputPrecio.value = "";
-    inputNombre.focus();
+  console.log("Productos ingresados: ", carrito);
+  return carrito;
 }
 
-/* Función para mostrar el carrito en la lista */
-function mostrarCarrito() {
-    listaCarrito.innerHTML = "";
-    carrito.forEach((item, index) => {
-        const li = document.createElement("li");
-        li.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center", "bg-secondary", "text-light", "border-0", "mb-1");
-        li.innerHTML = `
-      ${index + 1}. ${item.nombre}
-      <span>$${item.precio.toFixed(2)}</span>
-    `;
-        listaCarrito.appendChild(li);
-    });
+/* Función de procesamiento de datos*/
+function calcular_total(lista_productos) {
+  let total = 0;
+
+  for (let producto of lista_productos) {
+    total += producto.precio;
+  }
+
+  let descuento = 0;
+  if (total >= 20000) {
+    descuento = total * 0.1;
+    total -= descuento;
+    console.log(`Descuento aplicado: $${descuento.toFixed(2)}`);
+  } else {
+    console.log("No se aplicó descuento.");
+  }
+
+  return total;
 }
 
-/* Función para calcular el total */
-function calcularTotal() {
-    if (carrito.length === 0) {
-        alert("El carrito está vacío. Agregá productos antes de calcular.");
-        return;
-    }
+/* Función de salida de datos */
+function mostrar_resultado(total) {
+  let mensaje = "Resumen de tu compra:\n";
+  carrito.forEach((item, index) => {
+    mensaje += `${index + 1}. ${item.nombre} - $${item.precio}\n`;
+  });
+  mensaje += `\nTotal final: $${total.toFixed(2)}`;
 
-    let total = carrito.reduce((acc, item) => acc + item.precio, 0);
-    let descuento = 0;
-
-    if (total >= 20000) {
-        descuento = total * 0.1;
-        total -= descuento;
-    }
-
-    let mensaje = `Total de productos: ${carrito.length}\n`;
-    mensaje += descuento > 0
-        ? `Descuento aplicado: $${descuento.toFixed(2)}\n`
-        : "No se aplicó descuento.\n";
-    mensaje += `Total final: $${total.toFixed(2)}`;
-
-    resultadoTotal.textContent = `💵 ${mensaje.replace(/\n/g, " | ")}`;
-    console.log("Resumen de compra:", mensaje);
+  alert(mensaje);
+  console.log("Compra finalizada. Total a pagar: $" + total.toFixed(2));
 }
 
-btnAgregar.addEventListener("click", agregarProducto);
-btnCalcular.addEventListener("click", calcularTotal);
+/* --- Ejecución del simulador --- */
+alert("¡Bienvenido al simulador de compras de Mil Detalles!");
+agregar_productos();
+const total_compra = calcular_total(carrito);
+mostrar_resultado(total_compra);
