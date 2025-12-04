@@ -1,7 +1,7 @@
 @use "layout/bases" as *;/* INCLUIMOS ESTILO DE LA PAGINA EN GENERAL */
 
 @use "paginas/index" as *;/* INCLUIMOS ESTILO DE INDEX */
-@use "paginas/carrito" as *;/* INCLUIMOS ESTiLO DE CARRITO */
+@use "paginas/carrito.scss" as *;/* INCLUIMOS ESTiLO DE CARRITO */
 @use "paginas/quienes_somos" as *;/* INCLUIMOS ESTILOS DE QUIENES SOMOS */
 @use "paginas/clientes" as *;/* INCLUIMOS ESTILOS DE CLIENTES */
 @use "paginas/productos" as *;/* INCLUIMOS ESTILOS DE PRODUCTOS */
