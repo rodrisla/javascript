@@ -368,98 +368,48 @@ body {
   }
 }
 /* INCLUIMOS ESTILO DE INDEX */
-/* ESTILOS PARA LA PAGINA COMO COMPRAR */
-.centrar-card {
+/* ESTILOS PARA LA PAGINA CARRITO */
+.main {
   display: flex;
-  flex: 1;
   justify-content: center;
   align-items: center;
-}
-.centrar-card .card-fondo {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(4, auto);
-  gap: 0;
-  grid-template-areas: "subtitulo1 subtitulo1" "parrafo1 imagen1" "subtitulo2 subtitulo2" "imagen2 parrafo2";
-  height: auto;
-  width: auto;
-  max-width: 80%;
-  min-height: 100px;
-  background-color: #FADBD7;
-  padding: 10px;
-  border-radius: 10px;
-  margin-top: 3vh;
-}
-.centrar-card .card-fondo h2 {
-  text-align: center;
-}
-.centrar-card .card-fondo img {
-  display: block;
-  margin: 0 auto;
-  width: auto;
-  max-width: 35%;
-  height: auto;
-}
-.centrar-card .card-fondo p {
-  text-align: center;
-  font-size: 1.2em;
-}
-.centrar-card .card-fondo .subtitulo1 {
-  grid-area: subtitulo1;
-  text-align: center;
-}
-.centrar-card .card-fondo .parrafo1 {
-  grid-area: parrafo1;
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-}
-.centrar-card .card-fondo .imagen1 {
-  grid-area: imagen1;
-}
-.centrar-card .card-fondo .subtitulo2 {
-  grid-area: subtitulo2;
-}
-.centrar-card .card-fondo .parrafo2 {
-  grid-area: parrafo2;
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-}
-.centrar-card .card-fondo .imagen2 {
-  grid-area: imagen2;
+  padding: 20px;
 }
 
-/* MEDIAS QUERYS PARA TABLET */
-@media screen and (max-width: 991px) {
-  .centrar-card .card-fondo img {
-    display: block;
-    margin: 0 auto;
-    width: auto;
-    max-width: 50%;
-    height: auto;
-  }
+.carrito-container {
+  background: #FADBD7;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1254901961);
+  min-width: 70%;
+  max-height: 100%;
 }
-/* MEDIA QUERYS PARA CELULAR */
-@media screen and (max-width: 768px) {
-  .centrar-card {
-    max-height: 95%;
-    margin-top: 1vh;
-  }
-  .centrar-card .card-fondo {
-    grid-template-areas: "subtitulo1 subtitulo1" "imagen1 imagen1" "parrafo1 parrafo1" "subtitulo2 subtitulo2" "imagen2 imagen2" "parrafo2 parrafo2";
-  }
-  .centrar-card .card-fondo img {
-    display: block;
-    margin: 0 auto;
-    width: auto;
-    max-width: 50%;
-    height: auto;
-  }
+
+.carrito-items .item-carrito {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #FFE0EB;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 10px;
 }
-/* INCLUIMOS ESTOLO DE COMO COMPRAR */
+
+.item-carrito img {
+  width: 60px;
+  border-radius: 6px;
+}
+
+.btn-remove {
+  border: none;
+  background: #ff5a5a;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* INCLUIMOS ESTiLO DE CARRITO */
 /* ESTILOS PARA EL HTML QUIENES SOMOS */
 .centrar-card {
   display: flex;

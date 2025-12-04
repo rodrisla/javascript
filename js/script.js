@@ -39,15 +39,65 @@ let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 const botonesAgregar = document.querySelectorAll(".btn-agregar-carrito");
 botonesAgregar.forEach(boton => {
-  boton.addEventListener("click", () => {
+  boton.addEventListener("click", (e) => {
     const idProducto = parseInt(boton.getAttribute("data-id"));
     const productoAgregado = productos.find(prod => prod.id === idProducto);
     carrito.push(productoAgregado);
     /* console.log(carrito); */
     localStorage.setItem('carrito', JSON.stringify(carrito));
-    
-    
+
+
     alert(`Se agregó al carrito: ${productoAgregado.nombre}`);
   });
 });
 console.log("Carrito actual:", carrito);
+
+
+
+
+const contenedor = document.getElementById("carrito-prod");
+const carritoFooter = document.getElementById("carrito-footer");
+const totalSpan = document.getElementById("carrito-total");
+
+function llenarCarrito() {
+  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+  if (carrito.length === 0) {
+    contenedor.innerHTML = "<p class='text-center'>El carrito está vacío.</p>";
+    return;
+  }
+  carrito.forEach(prod => {
+    const div = document.createElement("div");
+    div.classList.add("item-carrito");
+
+    div.innerHTML = `
+            <div class="carrito-item d-flex align-items-center mb-3 p-2 shadow-sm rounded">
+                <img src="${prod.imagen}" alt="${prod.nombre}" style="width:70px; height:auto; border-radius:6px; margin-right:15px;">
+                <div>
+                    <p class="mb-1 fw-bold">${prod.nombre}</p>
+                    <p class="mb-0">$${prod.precio}</p>
+                </div>
+            </div>
+        `;
+
+    contenedor.appendChild(div);
+
+  });
+  carritoFooter.classList.remove("d-none");
+  let totalCarrito = carrito.reduce((acc, p) => acc + p.precio, 0)
+  totalSpan.textContent = "$" + totalCarrito;
+}
+
+
+document.getElementById("btnVaciar").addEventListener("click", () => {
+  carrito = [];
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+  totalCarrito = 0;
+  totalSpan.textContent = "$" + totalCarrito;
+  llenarCarrito();
+});
+
+llenarCarrito();
+
+
+

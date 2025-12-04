@@ -1,0 +1,41 @@
+@use "../utilidades/variables" as *;
+@use "../utilidades/mixin" as *;
+/* ESTILOS PARA LA PAGINA CARRITO */
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.carrito-container {
+    background: #FADBD7;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #00000020;
+    min-width: 70%;
+    max-height: 100%;
+}
+
+.carrito-items .item-carrito {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #FFE0EB;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+}
+
+.item-carrito img {
+    width: 60px;
+    border-radius: 6px;
+}
+
+.btn-remove {
+    border: none;
+    background: #ff5a5a;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
