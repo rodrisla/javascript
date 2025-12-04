@@ -775,10 +775,9 @@ body {
 }
 .grid-container-productos .main .distribucion .grilla .productos .card-producto {
   background-color: white;
-  height: 200px;
-  max-height: 200px;
   width: 90%;
   max-width: 250px;
+  min-height: 260px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -786,6 +785,21 @@ body {
   border: 1px solid #ddd;
   border-radius: 10px;
   margin: 0.5rem;
+  padding: 0.5rem;
+}
+.grid-container-productos .main .distribucion .grilla .productos .card-producto button {
+  width: 90%;
+  padding: 8px 12px;
+  background-color: #ffe4ff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: 0.2s;
+}
+.grid-container-productos .main .distribucion .grilla .productos .card-producto button:hover {
+  background-color: #C79BD1;
 }
 .grid-container-productos .main .distribucion .grilla .productos .card-producto .imagen-tamanop {
   height: auto;
@@ -804,6 +818,7 @@ body {
 .grid-container-productos .main .distribucion .grilla .productos .card-producto h3 {
   font-size: 1rem;
   text-align: center;
+  margin: 0.5rem 0;
 }
 .grid-container-productos .main .distribucion .grilla .productos .card-producto:hover {
   background-color: #FFE0EB;
