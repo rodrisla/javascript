@@ -72,7 +72,7 @@ function llenarCarrito() {
 
     div.innerHTML = `
             <div class="carrito-item d-flex align-items-center mb-3 p-2 shadow-sm rounded">
-                <img src="${prod.imagen}" alt="${prod.nombre}" style="width:70px; height:auto; border-radius:6px; margin-right:15px;">
+                <img src="${prod.imagen}" alt="${prod.nombre}"">
                 <div>
                     <p class="mb-1 fw-bold">${prod.nombre}</p>
                     <p class="mb-0">$${prod.precio}</p>
