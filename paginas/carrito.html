@@ -52,15 +52,20 @@
                 <h2 class="text-center mb-4">🛒 Tu carrito</h2>
 
                 <div id="carrito-prod" class="carrito-prod">
-                    
+
                 </div>
-              
+
                 <div id="carrito-footer" class="carrito-footer mt-4 d-none">
                     <p class="total fw-bold fs-5">Total: <span id="carrito-total">$0</span></p>
                     <button id="btnVaciar" class="btn btn-danger">Vaciar carrito</button>
-                    <button id="btnPagar" class="btn btn-success">Pagar</button>
+                    <button id="btnFinalizar" class="btn-finalizar btn btn-success">
+                        Finalizar compra
+                    </button>
                 </div>
-            </section>  
+            </section>
+            <div id="finalizar" class="finalizar d-none">
+                <h3>Finalizar compra</h3>
+            </div>
         </div>
         <!-- FOOTER -->
         <div class="grid-item footer">
@@ -77,7 +82,7 @@
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script defer src="../js/script.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

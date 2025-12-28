@@ -135,6 +135,58 @@ btnVaciar?.addEventListener("click", () => {
     }
   }).showToast();
 });
+const btnFinalizar = document.getElementById("btnFinalizar");
+const Finalizar = document.getElementById("Finalizar");
+
+btnFinalizar?.addEventListener("click", () => {
+  if (Object.keys(carrito).length === 0) {
+    Swal.fire("Carrito vacío", "Agregá productos antes de comprar", "warning");
+    return;
+  }
+
+  Swal.fire({
+    title: "Finalizar compra",
+    html: `
+      <input id="nombre" class="swal2-input" placeholder="Nombre">
+      <input id="email" class="swal2-input" placeholder="Email">
+      <input id="direccion" class="swal2-input" placeholder="Dirección">
+    `,
+    confirmButtonText: "Confirmar compra",
+    showCancelButton: true,
+    cancelButtonText: "Cancelar",
+    preConfirm: () => {
+      const nombre = document.getElementById("nombre").value;
+      const email = document.getElementById("email").value;
+      const direccion = document.getElementById("direccion").value;
+
+      if (!nombre || !email || !direccion) {
+        Swal.showValidationMessage("Completá todos los campos");
+        return false;
+      }
+
+      return { nombre, email, direccion };
+    }
+  }).then(result => {
+    if (result.isConfirmed) {
+      finalizarCompra(result.value);
+    }
+  });
+});
+
+function finalizarCompra(datos) {
+  carrito = {};
+  localStorage.removeItem("carrito");
+  LlenarCarrito();
+
+  Swal.fire({
+    icon: "success",
+    title: "¡Compra realizada!",
+    html: `
+      Gracias <strong>${datos.nombre}</strong><br>
+      Te enviamos el comprobante a <strong>${datos.email}</strong>
+    `
+  });
+}
 
 function Init() {
   CargarProductos().then(() => {
