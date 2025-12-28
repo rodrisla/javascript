@@ -1,17 +1,17 @@
-const url = "../js/productos.json";
-let productos = [];
+const url = "../js/productos.json";//url del archivo JSON, para simular una API
+let productos = [];//array vacio para cargar los productos
 
-let carrito = JSON.parse(localStorage.getItem("carrito")) || {};
+let carrito = JSON.parse(localStorage.getItem("carrito")) || {};//objeto carrito, si hay algo en localStorage lo carga, sino lo inicializa vacio
 
 function CargarProductos() {
-  return fetch(url)
+  return fetch(url) //llama a la URL del JSON
     .then(response => response.json())
     .then(data => {
-      productos = data;
+      productos = data;//asigna los datos al array productos
       data.forEach(prod => {
-        const contenedor = document.querySelector(`#${prod.categoria} .productos`);
+        const contenedor = document.querySelector(`#${prod.categoria} .productos`);//selecciona el contenedor segun la categoria del producto
         if (contenedor) {
-          let card = document.createElement("div");
+          let card = document.createElement("div");//crea un div para la tarjeta del producto
 
           card.innerHTML = `
       <div class="card-producto">
@@ -20,32 +20,32 @@ function CargarProductos() {
         <button class="btn-agregar-carrito" data-id=${prod.id}>Agregar al carrito</button>
       </div>
     `;
-          contenedor.appendChild(card);
+          contenedor.appendChild(card);//agrega la tarjeta al contenedor del producto
         }
       });
     });
 }
 
 function AgregarCarrito() {
-  document.addEventListener("click", e => {
-    if (!e.target.classList.contains("btn-agregar-carrito")) return;
+  document.addEventListener("click", e => {//escucha los clicks en todo el documento
+    if (!e.target.classList.contains("btn-agregar-carrito")) return;//si el click no es en un boton de agregar al carrito, no hace nada
 
-    const id = e.target.dataset.id;
-    const producto = productos.find(p => p.id == id);
+    const id = e.target.dataset.id;//obtiene el id del producto desde el data-id del boton
+    const producto = productos.find(p => p.id == id);//busca el producto en el array productos
 
-    if (!carrito[id]) {
+    if (!carrito[id]) {//si el producto no esta en el carrito, lo agrega con cantidad 1
       carrito[id] = {
         producto,
         cantidad: 1
       };
-    } else {
+    } else {//si ya esta en el carrito, aumenta la cantidad
       carrito[id].cantidad++;
     }
 
-    localStorage.setItem("carrito", JSON.stringify(carrito));
+    localStorage.setItem("carrito", JSON.stringify(carrito));//guarda el carrito en localStorage
     LlenarCarrito();
 
-    Toastify({
+    Toastify({//muestra una notificacion de que el producto fue agregado
       text: `${producto.nombre} agregado`,
       duration: 2000,
       style: {
@@ -55,7 +55,7 @@ function AgregarCarrito() {
   });
 }
 
-function LlenarCarrito() {
+function LlenarCarrito() {//funcion para llenar el carrito en el DOM
   const contenedor = document.getElementById("carrito-prod");
   const carritoFooter = document.getElementById("carrito-footer");
   const totalSpan = document.getElementById("carrito-total");
@@ -63,23 +63,23 @@ function LlenarCarrito() {
   if (!contenedor) return;
   contenedor.innerHTML = "";
 
-  const items = Object.values(carrito);
+  const items = Object.values(carrito);//convierte el objeto carrito en un array de items
 
   if (items.length === 0) {
     contenedor.innerHTML = "<p class='text-center'>El carrito está vacío.</p>";
     totalSpan.textContent = "$0";
-    carritoFooter.classList.add("d-none");
+    carritoFooter.classList.add("d-none");//oculta el footer del carrito si esta vacio
     return;
   }
 
   let total = 0;
 
-  items.forEach(({ producto, cantidad }) => {
+  items.forEach(({ producto, cantidad }) => {//itera sobre cada item del carrito
     total += producto.precio * cantidad;
 
     const div = document.createElement("div");
     div.classList.add("item-carrito");
-
+    // crea el HTML del item del carrito
     div.innerHTML = `
       <div class="carrito-item d-flex align-items-center mb-3 p-2">
         <img src="${producto.imagen}" alt="${producto.nombre}">
@@ -93,7 +93,7 @@ function LlenarCarrito() {
       </div>
     `;
 
-    contenedor.appendChild(div);
+    contenedor.appendChild(div);//agrega el item al contenedor del carrito
   });
 
   carritoFooter.classList.remove("d-none");
@@ -121,7 +121,7 @@ document.addEventListener("click", e => {
   LlenarCarrito();
 });
 
-const btnVaciar = document.getElementById("btnVaciar");
+const btnVaciar = document.getElementById("btnVaciar");//boton para vaciar el carrito
 btnVaciar?.addEventListener("click", () => {
   carrito = {};
   localStorage.setItem("carrito", JSON.stringify(carrito));
@@ -138,13 +138,13 @@ btnVaciar?.addEventListener("click", () => {
 const btnFinalizar = document.getElementById("btnFinalizar");
 const Finalizar = document.getElementById("Finalizar");
 
-btnFinalizar?.addEventListener("click", () => {
+btnFinalizar?.addEventListener("click", () => {//boton para finalizar la compra
   if (Object.keys(carrito).length === 0) {
-    Swal.fire("Carrito vacío", "Agregá productos antes de comprar", "warning");
+    Swal.fire("Carrito vacío", "Agregá productos antes de comprar", "warning");//mensaje de alerta si el carrito esta vacio
     return;
   }
 
-  Swal.fire({
+  Swal.fire({//mensaje para completar los datos de compra
     title: "Finalizar compra",
     html: `
       <input id="nombre" class="swal2-input" placeholder="Nombre">
@@ -154,31 +154,31 @@ btnFinalizar?.addEventListener("click", () => {
     confirmButtonText: "Confirmar compra",
     showCancelButton: true,
     cancelButtonText: "Cancelar",
-    preConfirm: () => {
+    preConfirm: () => {//valida que se completen todos los campos
       const nombre = document.getElementById("nombre").value;
       const email = document.getElementById("email").value;
       const direccion = document.getElementById("direccion").value;
 
-      if (!nombre || !email || !direccion) {
+      if (!nombre || !email || !direccion) {//si algun campo esta vacio, muestra un mensaje de validacion
         Swal.showValidationMessage("Completá todos los campos");
         return false;
       }
 
-      return { nombre, email, direccion };
+      return { nombre, email, direccion };//retorna los datos ingresados
     }
   }).then(result => {
-    if (result.isConfirmed) {
+    if (result.isConfirmed) {//si se confirma la compra, llama a la funcion finalizarCompra con los datos ingresados
       finalizarCompra(result.value);
     }
   });
 });
 
-function finalizarCompra(datos) {
+function finalizarCompra(datos) {//funcion para finalizar la compra
   carrito = {};
   localStorage.removeItem("carrito");
   LlenarCarrito();
 
-  Swal.fire({
+  Swal.fire({//muestra un mensaje de exito al finalizar la compra
     icon: "success",
     title: "¡Compra realizada!",
     html: `
@@ -188,8 +188,8 @@ function finalizarCompra(datos) {
   });
 }
 
-function Init() {
-  CargarProductos().then(() => {
+function Init() {//funcion de inicializacion
+  CargarProductos().then(() => {//carga los productos y luego inicializa el carrito
     AgregarCarrito();
     LlenarCarrito();
   });
