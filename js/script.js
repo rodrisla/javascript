@@ -1,103 +1,147 @@
-const productos = [
-  { id: 1, categoria: "accesorios", nombre: "Mascara de pestaña Tei", precio: 3900, imagen: "../imagenes/rimel.webp" },
-  { id: 2, categoria: "accesorios", nombre: "Broches Moño", precio: 2700, imagen: "../imagenes/broches.webp" },
-  { id: 3, categoria: "accesorios", nombre: "Balsamo Frutilla", precio: 2600, imagen: "../imagenes/balsamos.webp" },
-  { id: 4, categoria: "accesorios", nombre: "Tinta Tei", precio: 3200, imagen: "../imagenes/tinta.webp" },
-  { id: 5, categoria: "accesorios", nombre: "Labial Tei", precio: 3400, imagen: "../imagenes/labial.webp" },
-  { id: 14, categoria: "accesorios", nombre: "Mascara Facial Mely", precio: 2500, imagen: "../imagenes/labial.webp" },
+const url = "../js/productos.json";
+let productos = [];
 
+let carrito = JSON.parse(localStorage.getItem("carrito")) || {};
 
-  { id: 6, categoria: "vasos", nombre: "Vaso Starbucks Vinilo", precio: 4000, imagen: "../imagenes/vasoStarbucks.webp" },
-  { id: 7, categoria: "vasos", nombre: "Vaso Transparente Vinilo", precio: 3700, imagen: "../imagenes/vasoTransparente.webp" },
-  { id: 8, categoria: "vasos", nombre: "Vaso Starbucks DTF", precio: 5700, imagen: "../imagenes/vasoStarbucks.webp" },
-  { id: 9, categoria: "vasos", nombre: "Vaso Transparente DT", precio: 4000, imagen: "../imagenes/vasoTransparente.webp" },
-  { id: 10, categoria: "vasos", nombre: "Vaso Termico DTF", precio: 6800, imagen: "../imagenes/vasoTermico.webp" },
+function CargarProductos() {
+  return fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      productos = data;
+      data.forEach(prod => {
+        const contenedor = document.querySelector(`#${prod.categoria} .productos`);
+        if (contenedor) {
+          let card = document.createElement("div");
 
-  { id: 11, categoria: "botellas", nombre: "Botella Color DTF", precio: 6800, imagen: "../imagenes/botellaColor.webp" },
-  { id: 12, categoria: "botellas", nombre: "Botella Transparente DTF", precio: 7500, imagen: "../imagenes/botellaTransparente.webp" },
-
-  { id: 13, categoria: "cuadros", nombre: "Cuadros personalizados", precio: 35000, imagen: "../imagenes/cuadros.webp" },
-];
-
-productos.forEach(prod => {
-  const contenedor = document.querySelector(`#${prod.categoria} .productos`);
-  if (contenedor) {
-    let card = document.createElement("div");
-
-    card.innerHTML = `
+          card.innerHTML = `
       <div class="card-producto">
         <div class="imagen-tamanop"><img src="${prod.imagen}" alt="${prod.nombre}"></div>
         <h3>${prod.nombre} - $${prod.precio}</h3>
         <button class="btn-agregar-carrito" data-id=${prod.id}>Agregar al carrito</button>
       </div>
     `;
-    contenedor.appendChild(card);
-  }
-});
+          contenedor.appendChild(card);
+        }
+      });
+    });
+}
 
-let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+function AgregarCarrito() {
+  document.addEventListener("click", e => {
+    if (!e.target.classList.contains("btn-agregar-carrito")) return;
 
-const botonesAgregar = document.querySelectorAll(".btn-agregar-carrito");
-botonesAgregar.forEach(boton => {
-  boton.addEventListener("click", (e) => {
-    const idProducto = parseInt(boton.getAttribute("data-id"));
-    const productoAgregado = productos.find(prod => prod.id === idProducto);
-    carrito.push(productoAgregado);
-    /* console.log(carrito); */
-    localStorage.setItem('carrito', JSON.stringify(carrito));
+    const id = e.target.dataset.id;
+    const producto = productos.find(p => p.id == id);
 
+    if (!carrito[id]) {
+      carrito[id] = {
+        producto,
+        cantidad: 1
+      };
+    } else {
+      carrito[id].cantidad++;
+    }
 
-    alert(`Se agregó al carrito: ${productoAgregado.nombre}`);
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    LlenarCarrito();
+
+    Toastify({
+      text: `${producto.nombre} agregado`,
+      duration: 2000,
+      style: {
+        background: "linear-gradient(to right, #8a228a, #8c4c96)"
+      }
+    }).showToast();
   });
-});
-console.log("Carrito actual:", carrito);
+}
 
+function LlenarCarrito() {
+  const contenedor = document.getElementById("carrito-prod");
+  const carritoFooter = document.getElementById("carrito-footer");
+  const totalSpan = document.getElementById("carrito-total");
 
+  if (!contenedor) return;
+  contenedor.innerHTML = "";
 
+  const items = Object.values(carrito);
 
-const contenedor = document.getElementById("carrito-prod");
-const carritoFooter = document.getElementById("carrito-footer");
-const totalSpan = document.getElementById("carrito-total");
-
-function llenarCarrito() {
-  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-
-  if (carrito.length === 0) {
+  if (items.length === 0) {
     contenedor.innerHTML = "<p class='text-center'>El carrito está vacío.</p>";
+    totalSpan.textContent = "$0";
+    carritoFooter.classList.add("d-none");
     return;
   }
-  carrito.forEach(prod => {
+
+  let total = 0;
+
+  items.forEach(({ producto, cantidad }) => {
+    total += producto.precio * cantidad;
+
     const div = document.createElement("div");
     div.classList.add("item-carrito");
 
     div.innerHTML = `
-            <div class="carrito-item d-flex align-items-center mb-3 p-2 shadow-sm rounded">
-                <img src="${prod.imagen}" alt="${prod.nombre}"">
-                <div>
-                    <p class="mb-1 fw-bold">${prod.nombre}</p>
-                    <p class="mb-0">$${prod.precio}</p>
-                </div>
-            </div>
-        `;
+      <div class="carrito-item d-flex align-items-center mb-3 p-2">
+        <img src="${producto.imagen}" alt="${producto.nombre}">
+        <div class="ms-3">
+          <p class="fw-bold mb-1">${producto.nombre} x${cantidad}</p>
+          <p class="mb-0">$${producto.precio} c/u - <strong>$${producto.precio * cantidad}</strong></p>
+          <button class="btn btn-sm btn-outline-secondary menos m-2" data-id="${producto.id}">−</button>
+          <button class="btn btn-sm btn-outline-secondary mas m-2" data-id="${producto.id}">+</button>
+          <button class="btn btn-sm btn-outline-danger eliminar m-2" data-id="${producto.id}">✕</button>
+        </div>
+      </div>
+    `;
 
     contenedor.appendChild(div);
-
   });
+
   carritoFooter.classList.remove("d-none");
-  let totalCarrito = carrito.reduce((acc, p) => acc + p.precio, 0)
-  totalSpan.textContent = "$" + totalCarrito;
+  totalSpan.textContent = "$" + total;
+}
+
+document.addEventListener("click", e => {
+  const id = e.target.dataset.id;
+  if (!id) return;
+
+  if (e.target.classList.contains("mas")) {
+    carrito[id].cantidad++;
+  }
+
+  if (e.target.classList.contains("menos")) {
+    carrito[id].cantidad--;
+    if (carrito[id].cantidad <= 0) delete carrito[id];
+  }
+
+  if (e.target.classList.contains("eliminar")) {
+    delete carrito[id];
+  }
+
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+  LlenarCarrito();
+});
+
+const btnVaciar = document.getElementById("btnVaciar");
+btnVaciar?.addEventListener("click", () => {
+  carrito = {};
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+  LlenarCarrito();
+
+  Toastify({
+    text: "Carrito vaciado",
+    duration: 2000,
+    style: {
+      background: "linear-gradient(to right, #8a228a, #8c4c96)"
+    }
+  }).showToast();
+});
+
+function Init() {
+  CargarProductos().then(() => {
+    AgregarCarrito();
+    LlenarCarrito();
+  });
 }
 
 
-document.getElementById("btnVaciar").addEventListener("click", () => {
-  carrito = [];
-  localStorage.setItem("carrito", JSON.stringify(carrito));
-  totalCarrito = 0;
-  totalSpan.textContent = "$" + totalCarrito;
-  llenarCarrito();
-});
-
-llenarCarrito();
-
-
-
+Init();

@@ -19,15 +19,18 @@
 .carrito-items .item-carrito {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    background: #FFE0EB;
+    align-items: center;    
     border-radius: 8px;
     padding: 12px;
     margin-bottom: 10px;
 }
+.carrito-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0,0,0,.25);
+}
 
 .item-carrito img {
-    width: 60px;
+    width: 100px;
     border-radius: 6px;
 }
 
@@ -38,4 +41,17 @@
     padding: 5px 10px;
     border-radius: 6px;
     cursor: pointer;
+}
+#carrito-footer {
+  background: #FADBD7;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  #btnPagar{
+    margin-left: 50px;
+  }
+  
+}
+#carrito-footer:hover {
+  transform: scale(1.01);
+  box-shadow: 0 8px 20px rgba(0,0,0,.25);
 }
